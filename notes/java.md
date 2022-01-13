@@ -41,3 +41,24 @@
 - camel case: each word in an identifier is capitalized
 
 ## Classes and Objects
+
+### Definitions
+- Object: the encapsulation of state and behavior
+- Class: the blueprint for an object
+- State: the variables used inside of a class
+- Behavior: the methods used in the class that can affect state
+- Instantiation: The creation of a new object in memory during runtime (while you are running your program).
+- Encapsulation: The mechanism of wrapping data (i.e., variables) and behavior (methods) together as a single object.
+- Scope: The part of the code where the variable is accessible.
+- Constructors: Special methods used by the Java Virtual Machine to initialize a class.
+- Constructor Overloading: The use of multiple constructors, each varying in the number of parameters.
+- Inheritance: Code defined in one class or interface can be reused by other classes.
+- Abstraction: Focus on the interaction between classes and not the implementation details. We know how to use a cell phone, but we don't need to know how it works.
+- Interfaces: An interface is like a 100% abstract class. It has no implementation details in it at all.
+- Encapsulation: information hiding to improve maintainability, flexibility and extensibility.
+- Polymorphism: Making the same code be able to do different things in different contexts.
+- Abstract Classes: A class that must be subclassed in order to be used.
+- Abstract Methods: A method declaration that needs to be implemented by an overriding method.
+- Overriding: Changing the behavior of a subclass by creating a method with the same signature as a method in a parent class.
+- Overloading: Using the same method name but with different arguments to make your code easier to use.
+- Access Control: Specifies what can and cannot be reached from outside of the class. More information can be found on the Oracle Java Documentation page: Controlling Access to Members of a Class
