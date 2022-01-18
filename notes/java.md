@@ -31,6 +31,20 @@
 
 ## It Starts With Main
 
+- JRE calls on the main method to run your code.
+``` java
+public static void main(String[] args){  
+  //your code goes here
+}
+``` 
+- Main Method
+  - `public` it allows the JRE to call this method or any class
+  - `private` allows this class to run the code only.
+  - `static ` allows a class to be called without a instance of that class.
+  - `void` it does not need to returns a value.
+  - `(String[] args)` array of string of args
+
+
 ### Definitions
 - method: A Java method is a collection of statements that are grouped together to perform an operation.
 - modifier: a keyword that alters some aspect of a class, method or variable
@@ -62,3 +76,47 @@
 - Overriding: Changing the behavior of a subclass by creating a method with the same signature as a method in a parent class.
 - Overloading: Using the same method name but with different arguments to make your code easier to use.
 - Access Control: Specifies what can and cannot be reached from outside of the class. More information can be found on the Oracle Java Documentation page: Controlling Access to Members of a Class
+
+## Method
+
+## Java Built-in Classes
+
+### Wrapper Classes
+- Wrappers allow you to translate between primitive data types and a corresponding class. Unlike primitives, wrapper classes can have null values for which you can easily test.
+
+### ArrayList
+- they also share some common features with Arrays:
+  1. Both are index based with the index starting at 0
+  2. When you create them, you must specify what type of data they hold
+  3. They both can handle duplicate values
+  4. They can't hold primitives. Instead, you have to use the corresponding wrapper class.
+    - `List<Double> listOfPayments = new ArrayList<>();`
+  5.  enhanced for loop (or for-each loop) works just as easily with ArrayLists as with arrays:
+
+- ArrayLists implement two important interfaces:
+  - Collection 
+  - List
+
+- ArrayList Methods [See the Java API for Java 17 for a complete list.](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/ArrayList.html)
+  - `add()`: add items to the ArrayList
+    - `add(E e)`: adds element e to the end of the list.
+    - `add(int idx, E e)`: adds element e to the list at index idx. All following elements move up one index each.
+  - `toString()`: method has been overridden to print out the entire list:
+    - `System.out.println(hoard.toString());`
+  - `clear()` removes all elements from the list.
+  - `get(int idx)`: returns the element at location idx.
+  - `indexOf(Object o)`: returns the location of o if it exists in the list, otherwise returns -1.
+  - `remove(int idx)`: removes the element at location idx.
+  - `set(int idx, E e)`: replaces the element at location idx with new element e.
+  - `size()`: returns the number of elements in the list.
+  
+- Finally, it is possible to convert an array to an ArrayList and vice versa. 
+  - To convert an array to an ArrayList, you need the helper class `Arrays`. This class has a number of static methods to help you manipulate arrays.
+    - `List<String> listFromArray = Arrays.asList(stringArray)`
+  - To convert from an ArrayList to an array, use the List method `toArray`:
+    1. need to get the size of the array set before you can fill it.
+    2. takes as its input, the ArrayList you are converting, then reassigns the reference variable to the resulting array.
+    - `String[] stringArray = new String[stringList.size()]`
+    - `stringArray = stringList.toArray(stringArray)`
+
+### StringBuilder
