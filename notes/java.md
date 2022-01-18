@@ -119,4 +119,40 @@ public static void main(String[] args){
     - `String[] stringArray = new String[stringList.size()]`
     - `stringArray = stringList.toArray(stringArray)`
 
-### StringBuilder
+### StringBuilder [Documentation](https://docs.oracle.com/javase/tutorial/java/data/buffers.html)
+- tool that makes string operations more efficient. One way to concatenate two strings is to use the addition symbol as shown in the code example below.
+- contains the `.append()` method which appends data sequentially.
+```java
+public static void main(String[] args) {
+    String cities[] = {"Tokyo", "Delhi", "Shanghai", "Mexico City", "São Paulo"};
+    StringBuilder sb = new StringBuilder();
+    // loop through all of the cities
+    for(int i = 0; i < cities.length; i++){
+        // concatenate the city names
+        sb.append(cities[i]);
+        // concatenate a comma between each city name for increased readability
+        sb.append(", ");
+    }
+    System.out.println(sb);
+}
+```
+  - Output:
+  - `Tokyo, Delhi, Shanghai, Mexico City, São Paulo,`
+- The default constructor for StringBuilder (i.e. new StringBuilder()) will specify enough space for 16 characters by default. If the number of spaces is known before instantiating the StringBuilder object, it is a good idea to use the overloaded constructor which will define the initial capacity.
+  - `StringBuilder(CharSequence cs)`: The constructor will initialize the StringBuilder object with the passed in CharSequence (i.e., String-like) and pad on an extra 16 spaces for more elements.
+  - `StringBuilder(String s)`: The StringBuilder object is initialized with the passed-in string with 16 extra spaces for elements appended to the end.
+  - `StringBuilder(int initialCapacity)`: The default size for storing characters is 16. By passing in an integer, that value will be used to declare enough space in the computer's memory to store some number of spaces.
+
+- Primitive data types (e.g., integers, booleans, etc.) that are appended to a StringBuilder object are converted to a String type automatically.  
+
+### Date and Time Classes
+- to store and manipulate dates and times.
+#### LocalDate
+- stores only date information without a time-zone in the ISO-8601 calendar system, such as 2007-12-03.
+#### LocalTime
+- stores only time information without a time-zone in the ISO-8601 calendar system, such as 10:15:30.
+#### LocalDateTime
+- stores both date and time information without a time-zone in the ISO-8601 calendar system, such as 2007-12-03T10:15:30. 
+
+## Collections and Generics
+- collections framework

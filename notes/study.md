@@ -20,3 +20,22 @@
 1. Overloaded methods MUST change the parameters
 2. Overloaded methods can change the return type
 3. Overloaded methods can change the access modifier
+
+## Exceptions
+- The finally block code will always run regardless of try/catch block of code
+  - the only time to use finally when you use a database or I/O file
+    - use a close() to close data stream
+
+## Abstract vs Interface
+
+### Interface 
+  - does not need  `abstract` key word, It is assume to be abstract
+  - the key word `implements` the sub class to the main class
+  - you can implement has many class interface has you want
+  - every field in an interface is static, You need to give a value to your variables
+  - is great for having unrelated items do the same thing
+### Abstract
+  - need the `abstract` key word
+  - the key word `extends` the sub class to the main class
+  - can only extend one class
+  - is great for items that are related and received different type of value data
