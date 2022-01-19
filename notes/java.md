@@ -155,4 +155,111 @@ public static void main(String[] args) {
 - stores both date and time information without a time-zone in the ISO-8601 calendar system, such as 2007-12-03T10:15:30. 
 
 ## Collections and Generics
-- collections framework
+- Collections Framework: The set of interfaces and classes that constitute lists, sets, queues and maps.
+- Hashing: Conversion of an object into a fixed length hexadecimal integer.
+- Hash Function: A method that converts an object into a hash-code.
+- Set: A collection of unique things
+- List: An index based collection
+- Queue: A collection designed to hold elements in some order prior to processing.
+- Map: A collection that maps values to unique keys.
+- Nested Class: A static class declared inside another class.
+- Type-Safe: A property of Java that prevents you from putting the wrong object into a collection.
+- Generics: A syntax to make collections type-safe.
+
+## Design Patterns
+- the best practices used by experienced object-oriented software developers.
+- are solutions to general problems that software developers faced during software development.
+- these solutions were obtained by trial and error by numerous software developers over quite a substantial period of time. 
+
+- Design patterns have two purposes in software development:
+  1. Common Platform for Developers: Design patterns provide a standard terminology and are specific to particular scenarios.
+  2. Best Practices: Design patterns have evolved over a long period of time and they provide the best solutions to certain problems faced during software development. 
+
+- There are a total of 23 design patterns, which fall into three distinct categories of Creational, Structural, and Behavioral. Let’s review these three categories.
+
+### Three distinct categories
+
+#### Creational
+- These design patterns provide a way to create objects while hiding the creation logic, rather than instantiating objects directly using new operators. This gives the program more flexibility in deciding which objects need to be created for a given use case. Five well-known design patterns that are part of creational patterns are the:
+  1. Factory method pattern, which allows a class to defer instantiation to subclasses. 
+
+  2. Abstract factory pattern, which provides an interface for creating related or dependent objects without specifying the objects' concrete classes.
+
+  3. Builder pattern, which separates the construction of a complex object from its representation so that the same construction process can create different representations.
+
+  4. Prototype pattern, which specifies the kind of object to create using a prototypical instance and creates new objects by cloning this prototype.
+
+  5. Singleton pattern, which ensures that a class only has one instance and provides a global point of access to it.
+
+#### Structural
+- These design patterns concern class and object composition. Concept of inheritance is used to compose interfaces and define ways to compose objects to obtain new functionalities. Examples of structural patterns include:
+  1. Adapter pattern, which “adapts“ one interface for a class into one that a client expects.
+
+  2. Adapter pipeline, which uses multiple adapters for debugging purposes.
+
+  3. Retrofit interface pattern, an adapter used as a new interface for multiple classes at the same time.
+
+  4. Aggregate pattern, a version of the Composite pattern with methods for aggregation of children.
+
+  5. Bridge pattern, which decouples an abstraction from its implementation so that the two can vary independently.
+
+  6. Tombstone, an intermediate “lookup” object that contains the real location of an object.
+
+  7. Composite pattern, a tree structure of objects where every object has the same interface. We will review this type of pattern in the course.
+
+  8. Decorator pattern, which adds additional functionality to an object at runtime where subclassing would result in an exponential rise of new classes.
+
+  9. Extensibility pattern, aka framework, which hides complex code behind a simple interface.
+
+  10. Facade pattern, which creates a simplified interface of an existing interface to ease usage for common tasks.
+
+  11. Flyweight pattern, a large quantity of objects share a common properties object to save space.
+
+  12. Marker pattern, an empty interface to associate metadata with a class.
+
+  13. Pipes and filters, a chain of processes where the output of each process is the input of the next.
+
+  14. Opaque pointer, a pointer to an undeclared or private type to hide implementation details.
+
+  15. Proxy pattern, a class functioning as an interface to another thing.
+
+#### Behavioral
+- These design patterns are specifically concerned with communication between objects. Examples of this category of pattern include:
+
+  1. Blackboard design pattern, which provides a computational framework for the design and implementation of systems that integrate large and diverse specialized modules and implement complex, non-deterministic control strategies.
+
+  2. Chain of responsibility pattern, in which command objects are handled or passed on to other objects by logic-containing processing objects,
+
+  3. Command pattern, in which command objects encapsulate an action and its parameters.
+
+  4. “Externalize the stack”, which turns a recursive function into an iterative one that uses a stack.
+
+  5. Interpreter pattern, which implements a specialized computer language to rapidly solve a specific set of problems.
+
+  6. Iterator pattern, which is used to access the elements of an aggregate object sequentially without exposing its underlying representation. We’ll review this pattern later in the course.
+
+  7. Mediator pattern, which provides a unified interface to a set of interfaces in a subsystem.
+
+  8. Memento pattern, which provides the ability to restore an object to its previous state (rollback).
+
+  9. Null object pattern, which is designed to act as a default value of an object.
+
+  10. Observer pattern, aka Publish/Subscribe or Event Listener, in which objects register to observe an event that may be raised by another object.
+
+  11. Weak reference pattern, which decouple an observer from an observable.
+
+  12. Protocol stack, communications that are handled by multiple layers, which form an encapsulation hierarchy.
+
+  13. Scheduled-task pattern, in which a task is scheduled to be performed at a particular interval or clock time (used in real-time computing).
+
+  14. Single-serving visitor pattern, which optimizes the implementation of a visitor that is allocated, used only once, and then deleted.
+
+  15. Specification pattern, which is a recombinable business logic in a Boolean fashion.
+
+  16. State pattern, which is a clean way for an object to partially change its type at runtime.
+
+  17. Strategy pattern, in which algorithms can be selected on the fly, using composition.
+
+  18. Template method pattern, which describes the program skeleton of a program; algorithms can be selected on the fly, using inheritance.
+
+  19. Visitor pattern, which is a way to separate an algorithm from an object.

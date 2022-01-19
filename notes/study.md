@@ -39,3 +39,8 @@
   - the key word `extends` the sub class to the main class
   - can only extend one class
   - is great for items that are related and received different type of value data
+
+## Design Patterns
+- Creational Pattern: How objects can be created while the object creation is hidden.
+- Structural Pattern: How classes and objects are composed.
+- Behavioral Pattern: The communication between objects.
