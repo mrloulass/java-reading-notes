@@ -158,5 +158,279 @@ USING(actor_id)
 - can query that column but name it something different so you can easily identify it after the query.
 
 ## CRUD in SQL
-- Create, Read, Update, Delete (CRUD)
-- Insert, Select, Update, Delete (SQL Command)
+- `Create, Read, Update, Delete (CRUD)`
+- `Insert, Select, Update, Delete (SQL Command)`
+- Data Manipulation Language (DML)
+### Keywords
+- `CRUD`	Stands for Create, Read, Update and Delete. SQL uses slightly different keywords to complete these tasks.
+- `SELECT` read and look up data
+- `INSERT` INTO	Used to insert data into a table.
+- `VALUES`	Used along with INSERT INTO to define what values are being inserted into a table.
+- `IS NULL`	Used along with WHERE as a condition to see the data that has NULL as a value in a column.
+- `IS NOT NULL`	Used along with WHERE as a condition to see the data that does not have NULL as a value in a column.
+- `UPDATE`	Used to update data within a column based on a condition.
+- `SET`	Used along side UPDATE to set the data to be the desired value in a particular column.
+- `DELETE`	Deletes specific data based on a condition.
+
+### INSERT INTO
+- keyword `INSERT INTO`
+  - statement is used to insert data into a table within a database. 
+  - two ways to insert data into the database.
+    1. specify both the columns and the values of the columns:
+      - `INSERT INTO table_name (column1, column2, column3...) VALUES (value1, value2, value3...);`
+    2. insert values for every column in the table.
+      - ` INSERT INTO table_name VALUES (value1, value2, value3...);`
+
+### NULL
+- field that does not have a value will be read as a `Null` value.
+- `Null` means that the value was left blank when the record was created.
+- It is possible to check using SQL keywords for Null values or non-Null values.
+  - keywords `IS NULL` 
+    - `SELECT column_names FROM table_name WHERE column_name IS NULL;`
+  - keywords `IS NOT NULL` keywords
+    -  `SELECT column_names FROM table_name WHERE column_name IS NOT NULL;`
+
+### UPDATE
+- Keyword `UPDATE` 
+ - `SET` set the field you want to be updated to new data
+- `UPDATE table_name SET column1 = value1 column2 = value2, ... WHERE condition;`
+- can update a lot of things with one query
+- **Warning** If you don't include the `WHERE` statement when updating data, it will update every row to what you have `SET`.
+
+### DELETE
+- `Delete` is a way to remove existing data from a table
+- `DELETE FROM table_name WHERE condition;`
+
+## Tables
+- SQL that creates and modify the structure of tables are called **Data Definition Language** (DDL)
+
+### Keywords
+
+- `CREATE TABLE`	SQL keyword to create a new table in a database.
+- `DROP TABLE`	Used to drop a table in a database.
+- `NOT NULL`	Constraint used to define that a column in a table cannot be null.
+- `UNIQUE`	Constraint used to define that a column in a table has to be unique.
+- `PRIMARY KEY`	A combination of `UNIQUE` and `NOT NULL` and can only be used once in a table. Two types are Natural and Surrogate.
+- `AUTO_INCREMENT`	Keyword to automatically generate a unique number for each record.
+- `FOREIGN KEY`	The relation between tables that will restrict the insertion of data in one table, depending on the contents of a second table. The `FOREIGN KEY` refers to the `PRIMARY KEY` in a separate table.
+- `CHECK`	An expression that will check each entry into the table for validation when the table is created.
+- `DEFAULT`	Defines a default value for a column if a value is not supplied.
+- `Triggers`	Objects that will run code based on the operation that is performed on a table.
+- `CREATE VIEW`	Creates a virtual table called a View so queries only need to be run once and can then be assigned to the view. Prevents having to run a query many times to see information.
+- `UPDATE VIEW`	Used to update the columns in a View.
+- `DROP VIEW`	Used to drop a view.
+
+### Columns
+- where the actual data will live 
+- define these columns (also called fields) with a datatype that you deem appropriate for the data you wish to store. 
+
+### Nullability
+- `Null` is a value that is undefined
+- keywords `NULL` or `NOT NULL`
+
+### Creating Tables
+- keyword `CREATE TABLE`
+```SQL
+CREATE TABLE table_name (
+    column1_name datatype,
+    column2_name datatype,
+    column3_name datatype,
+    column4_name datatype,
+    ...
+)
+```
+- column parameters will define the column names in the table. 
+- The datatype will specify the type of data each column can hold. 
+- common data types used:
+  - `CHAR(size)`
+  - `VARCHAR(size)`
+  - `NVARCHAR(size)`
+  - `INTEGER`
+  - `DATETIME`
+  - `NUMERIC`
+
+#### Constraints
+- are used to specify rules for data in a table that will limit the type of data that can go within a table or column.
+- will make sure that the data is reliable and accurate and if any of the constraints are violated, the action or query will be aborted. 
+##### NOT NULL
+- will force that column not to accept null values
+- This is useful when you are gathering data from a user (like signing up for a website), and you need every input field to contain some data.
+```SQL
+CREATE TABLE AppUsers1 (
+AppUserID INTEGER,
+FirstName VARCHAR(50) NOT NULL,
+LastName VARCHAR(50) NOT NULL,
+SignUpDate DATETIME NOT NULL)
+```
+- This will ensure that each of those rows in the AppUsers table will have data.
+
+##### UNIQUE
+- ensures that some column or combination of columns is unique to each row in the table. 
+```SQL
+CREATE TABLE AppUsers2 (
+AppUserID INTEGER UNIQUE,
+FirstName VARCHAR(50) NOT NULL,
+LastName VARCHAR(50) NOT NULL,
+SignUpDate DATETIME NOT NULL)
+```
+- making sure that the `AppUserID` is going to be unique for each user. 
+
+##### PRIMARY KEY
+- is a combination of `NOT NULL` and `UNIQUE`, so that every row in the table is unique and not null. 
+- Almost all tables should have a `PRIMARY KEY` 
+- Without a `PRIMARY KEY`, there is no way to identify each row uniquely.
+```SQL
+CREATE TABLE AppUsers3 (
+AppUserID INTEGER PRIMARY KEY,
+FirstName VARCHAR(50) NOT NULL,
+LastName VARCHAR(50) NOT NULL,
+SignUpDate DATETIME NOT NULL)
+```
+- replace `UNIQUE` with `PRIMARY KEY`
+- This will now ensure that the AppUserID is unique to every row and also is required to have a value.
+
+###### AUTOINCREMENT
+- will automatically generate a unique number when a new record is inserted into a table. 
+```SQL
+CREATE TABLE AppUsers4 (
+AppUserID INTEGER PRIMARY KEY AUTO_INCREMENT,
+FirstName VARCHAR(50) NOT NULL,
+LastName VARCHAR(50) NOT NULL,
+SignUpDate DATETIME NOT NULL)
+```
+- your query will now automatically produce an `AppUserID` when a new row is generated.
+- written out differently depending on what type of SQL server you are using. 
+
+###### Types of Primary Keys
+- Natural: is a when the Primary Key is assigned to a piece of data that already exists in the record, and will always be unique for each record. 
+  - An example of this could be a Social Security Number.
+- Surrogate: is a Primary Key that doesn't have anything to do with the actual data.
+  - that data has nothing to do with the actual record except to give it a unique piece of data.
+
+###### FOREIGN KEY
+- is a relation between tables that will restrict the insertion of data in one table, depending on the contents of a second table. 
+- The `FOREIGN KEY` refers to the `PRIMARY KEY` in a separate table.
+```SQL
+CREATE TABLE customerExample(
+  FirstName NVARCHAR(40),
+  LastName NVARCHAR(30),
+  State NVARCHAR(2),
+  FOREIGN KEY(State) REFERENCES states(Abbreviation)
+);
+```
+- using `FOREIGN KEY` to call out the column "State" in your customers table, so it references the Abbreviation column in the states table
+
+##### CHECK
+- is an expression that you create that will check each entry into the table for validation.
+```SQL
+CREATE TABLE customerExample(
+  FirstName NVARCHAR(40),
+  LastName NVARCHAR(30),
+  State NVARCHAR(10),
+  PostalCode INTEGER,
+  FOREIGN KEY(State) REFERENCES states(Abbreviation),
+  CHECK (length(PostalCode) = 5)
+);
+```
+- that `CHECK` is used to ensure that PostalCode is equal to 5. 
+- you needed to use `length()`, a function that will return the length of whatever is inside the parenthesis. 
+- Say you are inserting a new customer into this table and forget a number in the postal code. You will get an error
+
+##### DEFAULT
+- defines default values that you can assign to a column, in the case where an insert statement does not include a value for that column.
+```SQL
+CREATE TABLE customerExample(
+  FirstName NVARCHAR(40),
+  LastName NVARCHAR(30),
+  State NVARCHAR(10),
+  PostalCode INTEGER,
+  SignUpDate datetime DEFAULT current_timestamp,
+  FOREIGN KEY(State) REFERENCES states(Abbreviation),
+  CHECK (length(PostalCode) = 5)
+);
+```
+- set the default constraint to the `datetime()` function, 
+- which would populate the date and time (local time, not UTC) of when the record was created in the table. 
+
+##### Triggers
+- are objects that you can append to your table that will run code based on the operation that is performed on a table.
+
+### Insert
+- with new table you can insert data in your rows
+#### Insert All Columns
+- If you wanted to insert all columns from one table to another,
+```SQL
+INSERT INTO table2
+SELECT * FROM table1
+WHERE condition;
+```
+-  each table MUST have the same name, number, and order of the columns. 
+- you will get an error.
+#### Insert Some Columns
+- If you wanted to insert only some columns
+```SQL
+INSERT INTO table2 (column1, column2, column3, ...)
+SELECT column1, column2, column3, ...
+FROM table1;
+```
+- You could also add a where statement to this
+```SQL
+INSERT INTO table2 (column1, column2, column3, ...)
+SELECT column1, column2, column3, ...
+FROM table1
+WHERE condition;
+```
+- you are now using `SELECT` to select which columns should be inserted into your table.
+
+### Dropping a Table
+- to delete the table
+- keyword `DROP TABLE`
+- `DROP TABLE table_name;`
+
+### Views
+- is a virtual table based on the result of a SQL statement
+- contains rows and columns, just like a real table, but when a view is created, a table is NOT created; you are just showing the output of the selected data.
+- can use SQL functions, `WHERE`, and `JOIN` statements in a view to be able to present the data as if it were coming from one table.
+```SQL
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+```
+- to see the View
+  - `SELECT * FROM view_name;
+#### Create View with Join
+- Creating a `View` using a `Join` will look very similar to `Joins`. 
+```SQL
+SELECT first_name, last_name, film_id
+FROM sakila.actor
+INNER JOIN sakila.film_actor
+ON sakila.actor.actor_id = sakila.film_actor.actor_id
+```
+```SQL
+create view ActorFilms as
+SELECT first_name, last_name, film_id
+FROM sakila.actor
+INNER JOIN sakila.film_actor
+ON sakila.actor.actor_id = sakila.film_actor.actor_id
+```
+#### Drop View
+- can delete View
+- keyword DROP VIEW
+- `DROP VIEW view_name`;
+
+## Indexes and Project
+- Indexes deal with the ordering of your data and have a significant impact on the performance of your database.
+- retrieve the data from the database very quickly and improves the read time of the data. 
+- it lengthens the write-time when creating a new record. 
+- two particular types of indexes in SQL server
+  - Clustered Index
+  - Non-Clustered Index
+### Clustered Index
+- physical order of the data as it is stored on disk.
+- the SQL server stores it by that column.
+- can only have one of these on a table, it is common that the primary key is also the clustered index.
+### Non-Clustered Index
+
+
+
