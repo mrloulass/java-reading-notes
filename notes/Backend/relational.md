@@ -431,6 +431,42 @@ ON sakila.actor.actor_id = sakila.film_actor.actor_id
 - the SQL server stores it by that column.
 - can only have one of these on a table, it is common that the primary key is also the clustered index.
 ### Non-Clustered Index
+- creates an entirely different object within the table.
+- It contains the column or columns selected for indexing and points to the table's rows containing the data.
+### Create Index
+-  `CREATE INDEX` statement is used to create indexes in a table.
+```SQL
+CREATE INDEX index_name
+ON table_name (column1, column2, ...);
+```
+### CREATE UNIQUE INDEX
+- will create a unique index on a table. Duplicate values are not allowed
+```SQL
+CREATE UNIQUE INDEX index_name
+ON table_name (column1, column2, ...);
+```
+### Explain Query Plan
+- will show you what is happening when a query is run.
+### Common SQL Functions
+- these functions can be used with the `WHERE` statement giving it a condition on which to run.
+- Min: min() function in SQL will return the smallest value of the selected column.
+- Max: max() function in SQL will return the largest value of the selected column.
+- Sum: sum() function will return the total sum of a numeric column
+- Avg: avg() function will return the average value of a numeric column
+- Count: count() function will return the number of rows that match certain criteria.
+### Group By
+- SQL `GROUP BY` statement is often used with the functions (MIN, MAX, SUM, AVG, COUNT). 
+- The results of these functions can then be grouped using one or more columns. 
+```SQL
+SELECT column_name(s) FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+```
+### Maintaining Database Security
+
+
+
+
 
 
 
