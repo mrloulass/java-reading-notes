@@ -4,7 +4,8 @@
 - Java
 
 ## Frameworks
-- Spring
+- Spring Frameworks
+- Spring Boot
 
 ## IDE
 - Eclipse
@@ -12,3 +13,4 @@
 
 ## Database
 - MySQL
+- MongoDB

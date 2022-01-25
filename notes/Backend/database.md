@@ -41,8 +41,6 @@
   - Physical:
     - The "How" with the DBMS: The physical model defines how the system will be deployed utilizing a specific DBMS. This is typically created by the DBA and developers.
 
-#### Schemas
-
 ### Object-Oriented (OODBs)
 - any database that is non-relational
 - object-oriented database focuses on tracking information represented by the modeling and creation of data as objects similar to object-oriented programming.
@@ -57,8 +55,6 @@
 - Scientific products
   - Molecular science
   - Astronomy
-
-#### Schemas
 
 ### NoSQL () non-relational
 - are non-tabular (data arranged in vertical columns and horizontal rows) and store data differently than relational tables. NoSQL databases come in a variety of types based on their data model. 
@@ -83,7 +79,4 @@
 - Real-time data analysis
 - Document databases
 - Graph databases
-
-#### Schemas
-
 
