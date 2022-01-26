@@ -167,6 +167,42 @@ db.appusers.insertOne({_id:1,lastName:"Pumpernickel", firstName:"Georgina", midd
 - use the `db.createCollection` function to create a collection, but there is a shortcut.
 - If you run an insert query with a collection name that does not already exist, it will automatically create that collection for you.
 
+### Querying Documents
+- finding documents in a collections
+
+#### Syntax
+- `find()`: find an entire collection without any parameters
+  - `db.collectionName.find({})`
+  - MongoDB uses a cursor to retrieve the documents for you, which is simply a pointer to the result set.
+  - If your collection exceeds 20 documents, then the first 20 will be shown, and you will need to type `it` to continue iterating to the next 20 documents.
+- When you don't want to return every document within a collection
+  - `db.collectionName.find({query, projection})`
+  - Query: Specifies a selection filter using query operators and is optional.
+  - Projection: Specifies certain fields to return in the documents that match the query filter and is optional. To return all fields in the matching documents, omit this parameter.
+  - Cursor: A pointer to the result set of a query. This is the output of whatever documents you are locating and from which you are selecting.
+#### Query Operators
+- To limit your document result set
+  - Comparison Query Operators
+  - Logical Query Operators
+  - Element Query Operators.
+
+##### Comparison Query Operators
+- compare documents against the specified value.
+- `$eq`: query operator will query documents that are equal to the specified value.
+  - `db.appusers.find({ _id : { $eq : 1} })`
+- `$ne`: Matches all documents that are not equal to the specified value.
+  - `db.appusers.find({ _id : { $ne : 1} })`
+- `$gt`: Matches all documents that are greater than the specified value.
+  - `db.appusers.find({ _id : { $gt : 1} })`
+- `$gte`: Matches all documents that are greater than or equal to the specified value.
+  - `db.appusers.find({ _id : { $gte : 2} })`
+- `$lt`: Matches all documents that are less than the specified value.
+  - `db.appusers.find({ _id : { $lt : 2} })`
+- `$lte`: Matches all documents that are less than or equal to the specified value.
+- `db.appusers.find({ _id : { $lte : 2} })`
+
+
+
 
 
  
