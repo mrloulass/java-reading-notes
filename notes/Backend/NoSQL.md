@@ -453,3 +453,58 @@ $max	Updates the value to a specified value if it is greater than the current va
 
 
 ### Sharding
+- is a way to spread data across multiple machines and servers. MongoDB uses Sharding to support deployments and applications that contain huge data sets. 
+- The reason for this is that when database systems have large data sets, a single server may have trouble keeping up with all the data. 
+- There are two ways to deal with a situation like this: Vertical or Horizontal Scaling.
+#### Terms
+- `Sharding` is a way to spread data across multiple machines and servers. MongoDB uses Sharding to support deployments and applications that contain huge data sets. The reason for this is because when database systems have large data sets, a single server may have trouble keeping up with all the data. There are two ways to deal with a situation like this: Vertical or Horizontal Scaling.
+- `Vertical Scaling`	Involves ways to increase the capacity of a server, such as using a much more powerful CPU, adding more RAM, or increasing the amount of storage space.
+- `Horizontal Scaling`	The process of spreading out the dataset between multiple servers and increasing the storage to those servers as needed.
+- `aggregate()`	This method calculates the aggregate (total) values for data in a collection.
+- `count()`	This method will count and return the number of results based on a query.
+- `totalSize()`	This method will return the total size in bytes of the data in the collection plus the size of every indexes on the collection.
+#### Vertical Scaling
+- involves ways to increase the capacity of a server, such as using a much more powerful CPU, adding more RAM, or increasing the amount of storage space. 
+- There are limitations when using Vertical Scaling because there may be restrictions on how much storage one machine can handle. 
+- cloud-based providers have a maximum for how much storage they have.
+#### Horizontal Scaling
+- is the process of spreading out the dataset between multiple servers, and increasing the storage to those servers as needed. 
+- Even if a single machine out of the many handling the data may not be super high-speed, overall, it may increase the efficiency of the application having many machines. 
+- If the dataset expands, all that is needed is to add servers to handle that data as needed. MongoDB supports Horizontal Scaling through Sharding.
+#### Enable Sharding
+- is done at a very high level in your database
+- create Sharding in your database
+```
+db.runCommand({
+   shardCollection: "<database>.<collection>",
+   key: <shardkey>,
+   unique: <boolean>,
+   numInitialChunks: <integer>,
+   collation: { locale: "simple" }
+})
+```
+  - **shardCollection**: How you name which collection in which database you would like to shard. It will always be a string.
+  - **key**: The index specification document to use as the shard key. The shard key determines how MongoDB distributes the documents among the shards.
+  - **unique**: When true, the unique option ensures that the underlying index enforces a unique constraint. Hashed shard keys do not support unique constraints. Defaults to false.
+  - **numInitialChunks**: Specifies the number of chunks to initially create when sharding a collection that is empty with a hashed shard key. Then, MongoDB will create and balance chunks across the cluster. The `numInitialChunks` must be less than 8192 per shard.
+    - MongoDB divides sharded data into chunks. Each chunk has an inclusive lower and exclusive upper range based on the shard key.
+  - **collation**: Optional. If the collection specified to shardCollection has a default collation, you must include a collation document with `{ locale : "simple" }`, or the shardCollection command fails. At least one of the indexes whose fields support the shard key pattern must have the simple collation.
+    - Collation allows users to specify language-specific rules for string comparison, such as rules for lettercase and accent marks.
+
+### More Methods in NoSQL
+- [Collection Methods in Mongo](https://docs.mongodb.com/v3.0/reference/method/js-collection/)
+#### aggregate()
+- calculates the aggregate (total) values for data in a collection.
+- `db.collectionName.aggregate(pipeline, options)`
+  - **pipeline**: An array that is a sequence of data aggregation operations or stages.
+    - [Pipeline Aggregation Stages](https://docs.mongodb.com/v3.0/reference/operator/aggregation-pipeline/)
+  - **options**: Optional, additional documents that are passed in when using aggregate.
+#### count()
+- This method will count and return the number of results based on a query
+- if you wanted to count the number of documents in your collection
+- `db.collectionName.count()`
+- You can also run a query with a filter.
+  - `db.appusers.count( { age: { $gt : 20 } } )`
+#### totalSize()
+- This method will return the total size in bytes of the data in the collection plus the size of every index on the collection.
+
