@@ -32,6 +32,7 @@
 - An example of this would be the GreetingController class in the greeting project.
 
 ## HTTP and Servlets
+
 ### Terms
 - `Annotation`	A form of metadata that can be added to Java source code.
 - `HTTP` (Hypertext Transfer Protocol)	An application layer protocol for communication between systems using hypermedia documents such as HTML
@@ -126,3 +127,14 @@ Accept-Language: en
 - Response with status 404
   - send the error to the client (Resource Not Found)
     - `response.sendError(HttpServletResponse.SC_NOT_FOUND, "The specified resource does not exist on this server.");`
+
+## Data Persistence
+- is a means for an application to persist and retrieve information from a non-volatile storage system. JPA standardizes the important task of object-relational mapping by using annotations or XML to map objects into one or more tables of a database.
+
+### Terms
+- `DAO`	A Data Access Object is a component that contains all persistence logic which is focused on database access.
+- `JDBC`	Java Database Connection is a persistence layer framework that reduces both time and errors while making data access an easier task.
+- `JDNI`	Java Naming and Directory Interface is a way to connect to a database connection pool on a Java EE server.
+- `Data Source`	A connection to the physical location of the actual data source.
+- `Query Sanitation`	The removal of malicious data that is usually submitted through a web form.
+- `JPA`	Java Persistence API is used for making connections SQL databases.
