@@ -5,6 +5,7 @@
 
 ## Frameworks
 - Spring Frameworks
+- Spring STS
 - Spring Boot
 
 ## IDE
@@ -18,3 +19,4 @@
 ## Tools
 - Apache Tomcat
 - Postman
+- Hibernate

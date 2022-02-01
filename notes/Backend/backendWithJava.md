@@ -128,7 +128,7 @@ Accept-Language: en
   - send the error to the client (Resource Not Found)
     - `response.sendError(HttpServletResponse.SC_NOT_FOUND, "The specified resource does not exist on this server.");`
 
-## Data Persistence
+## Data Persistence (will add more notes later)
 - is a means for an application to persist and retrieve information from a non-volatile storage system. JPA standardizes the important task of object-relational mapping by using annotations or XML to map objects into one or more tables of a database.
 
 ### Terms
@@ -138,3 +138,73 @@ Accept-Language: en
 - `Data Source`	A connection to the physical location of the actual data source.
 - `Query Sanitation`	The removal of malicious data that is usually submitted through a web form.
 - `JPA`	Java Persistence API is used for making connections SQL databases.
+
+### MySQL
+- is a traditional Relational Database Management System (RDMS) that uses the SQL syntax to manage table data
+- a NoSQL service that can store data in JSON Collections.
+- two application you will need in order to use MySQL, the `Service` and the `Client`
+
+#### Service
+- `MySQL Server` engine which manages the data in your tables and collections. 
+- part of MySQL that secures, organizes, and hosts your data.
+
+#### Client
+- `MySQL Workbench` is the interface you use to connect to the `MySQL Server` and make changes. 
+- can perform queries, create tables, make schemas, and change the server settings through the `MySQL Workbench`. It is helpful to think of `MySQL Workbench` as a browser to view the contents of your `MySQL Server`.
+
+## ORM (Object-Relational Mapping) (will add more notes later)
+- data can be stored with ease saving time and stress. ORM affords developers the ability to map the properties of an object to the columns in a database. 
+-  developers do not need to write error-prone SQL code nor spend time trying to debug broken code. 
+- ORMs provide a few sophisticated features
+  1. ORMs allow for `lazy loading` which will only fetch the necessary data from the database. Lazy in this sense means grabbing the minimum amount of data to get the job done. 
+  2. ORMs allow for `eager fetching` which is the opposite of lazy loading. This feature will retrieve an object and it's connected components in a single query, resulting in a larger data payload and longer database access times (i.e., slower). 
+  3. Finally, there is the `cascading` feature which will update a table such that connected tables are also updated if needed. 
+- These features combined with the persistence of the ORM make it a powerful tool in the world of large applications.
+- The persistence framework `Hibernate`
+  - which is an implementation of the `Java Persistence API` (JPA).
+### Hibernate
+- is an object–relational mapping tool for the Java programming language. It provides a framework for mapping an object-oriented domain model to a relational database.
+  - `Session` class found in the `org.hibernate.Session` package.
+    - is an interface which provides data-access functionality to the database by creating, reading, updating, or deleting data to and from the database.
+  - `SessionFactory` class is responsible for opening, closing, and managing any number of `Hibernate` `Session` objects.
+
+## RESTful Web API's 
+- `REST`(Representational State Transfer) is an architectural style for using the HTTP protocols. 
+- A `RESTful` web service is a way for different computers to exchange information with one another across the internet. 
+- `RESTful` web services operate over the HTTP protocol most notably for the GET, POST, PUT, and DELETE methods. 
+
+### Terms
+- `Stateless`	Information about communication is retained by neither the server nor the client.
+- `REST`	Representational state transfer, used in the implementation of HTTP.
+- `API`	Application Programming Interface, used to expose end points that a client application can execute CRUD operations on.
+- `@RestController`	A meta annotation combining `@Controller` and `@RequestBody` annotations to simplify the creation of controllers using REST.
+- `@Controller`	This annotation is used to tell spring that a class will implement HTTP and needs to be configured as such.
+- `@RequestMapping`	This annotation is used to assign the value of the route for a controller or method and can also be used to determine which CRUD method should be allowed for a given route.
+
+### Rest Controller
+1. `@RestController:` This annotation is actually a combination of two different annotations.
+  - `@Controller` - The basic controller annotation but this will attempt to return a view after searching the default path for a matching view.
+  - `@ResponseBody` - Tells the controller to automatically serialize to JSON what is returned from the method and then that JSON is placed inside the response body of the HTTP response before being sent back to the client.
+- `meta-annotation`: combining two or more annotations into a single annotation
+  - `@RestController` is a great example of a meta-annotation that creates a seamless transfer of information without additional overhead.
+
+2. `@Autowired`: When you need to access methods from a different class `@Autowired` will take care of finding and implementing the correct classes based on the name of the property or method. 
+
+3. `@GetMapping`: Notice that your route can be given a specific mapping by changing the first word, Get, Put, Post, Delete followed by Mapping will tell the controller which method to hit for a specific route. Keep in mind that if you use the default of `@RequestMapping()` without an argument, the annotation will map all four by default, and any path entered will always return the method to which the annotation is attached.
+
+### Adding Static Files
+- A good example of when you would not want the controller to serve JSON is when expecting the server to send static files. To do this, you will add a controller that is going to serves up a static file. 
+- change the Controller to function as an API for the static files.
+1. the static files are going to represent the client,add the controller that will serve them to the root package for the domain
+2. Now that you have a controller to serve up the `index.html` view, you better create an `index.html` file in the default location Spring will look for it. `src/main/resources/static` is the place to be if you want to serve static files.
+3. Add an index.js file in the same folder and modify it to contain the JavaScript code
+4. Add a style.css file in the same folder 
+- The `Controller`class is functioning to send a response which is HTML rather than JSON because of the `@Controller` annotation.
+
+### Modify Message Controller
+- handle incoming messages
+- consume resources from the MessageController
+1. add a `@RequestMapping("/api")` annotation just below the `@RestController` annotation. 
+  - By adding this annotation at the top of the class, any path within the MessageController will need the prefix `/api` to be accessed. -
+  - This is useful when creating an API because it is clear that this route is for data only and not for viewing pages.
+2. Add a new method that will take care of the the logic to pull directly from the route.
