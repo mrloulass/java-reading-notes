@@ -208,3 +208,197 @@ Accept-Language: en
   - By adding this annotation at the top of the class, any path within the MessageController will need the prefix `/api` to be accessed. -
   - This is useful when creating an API because it is clear that this route is for data only and not for viewing pages.
 2. Add a new method that will take care of the the logic to pull directly from the route.
+
+## Security
+- is an essential part of any application, 
+especially for one exposed to the world wide web
+### Spring Security Toolkit
+- toolkit allows developers to secure resources on the server-side to only those authorized to see the content.
+### Terms
+- Authentication	Verifying that the credentials are valid and the user is who they say they are.
+- Authorization	The rules that govern who is allowed to do what.
+
+### [Securing a Web Application](https://spring.io/guides/gs/securing-web/)
+
+#### Adding Views
+- `src/main/resources/template`
+  - `home.html` 
+  - `secure.html` - This view will only be accessible to users who have logged in.
+  - `login.html`
+  - `register.html` - This view will allow a person to register for your application.
+- `src/main/resources/static`
+  - `folder(css)`
+    - `style.css`
+#### Create a Controller
+- `com.securewebapp.auth`
+  - HomeController
+#### Configure Your Data
+- need to store the user information in a database for later authentication when the user attempts to log in. 
+- will be using a MySQL database. 
+- need a model object for your Users 
+- a repository interface for communicating with the SQL server.
+1. `src/main/resources`
+  - application.properties
+    - add hibernate and datasource for connections to MySQL
+2. `com.securewebapp.auth`
+  -  your authentication related classes and interfaces in this package.
+  - create a `User` class in the `com.securewebapp.auth` package. 
+    - The `User` class will be used for modeling the user data you will later be saving to the database.
+  - create a new repository interface called `UserRepository`
+    - for communicating with the database
+    - `UserRepository` interface is extending the `JpaRepository`, which is the interface provided by the `JPA` package you installed at the beginning of this lesson. 
+    - `JPA` uses this interface to generate the SQL queries behind the scenes that will query the database and return resulting records. 
+    - `JpaRepository` has several default methods, but you can add your own methods such as the `findByUsername` method. Adding custom methods to your interface requires you follow a naming convention of `findBy` followed by the name of the column you wish to find a value for. Since you need to search for users according to the username they enter, you will need to add this method.
+#### Implement the UserDetailsService
+- configure your application to use the `User` and `UserRepository` to perform the authentication. 
+- create a special service class that implements an interface called `UserDetailsService`
+- added to the configuration of our spring security application so that each request made to the application can be validated and authenticated.
+- adding this validation as part of the configuration, you will not need to perform the authentication check in the logic of each controller method. Instead the authentication will happen each time a request is made before it makes the request to your controllers.
+#### Configure the Application Services
+- Now that you have a service that will retrieve user information from out of the database, it's time to configure an authentication provider to bring everything together.
+- `com.securewebapp` package 
+  - Create a new class called `WebSecurityConfig`
+    - which will contain the logic for authorization.
+
+## Logging and Debugging
+### Terms
+- `Debug`	To identify errors in code and remove them.
+- `Breakpoint`	A marked line of code that marks the location where the debugger should pause execution.
+- `Compile-time Error`	An error that occurs before or during the compilation of the code.
+- `Run-time Error`	An error that occurs during the life of a running application.
+### Debugging
+- hunt down and remove errors from the application.
+- step through a running application one line at a time.
+#### Tools
+- breakpoints
+  - mark a line within STS for the program to pause
+  - This is useful if a single line of code needs to be tested.
+### Logging
+- purpose of logging can be thought of like a registry of application activity. 
+- The benefits of logging empower a developer to spot suspicious activity in an account, trace the cause of repeated errors in an application, or perform an analysis on the most time-consuming part of the application.
+#### Add Log Configuration
+-  if you only wanted to show logs that are of a certain level to be shown and are not concerned with more detailed logs
+- add `logging.properties` file in `src/main/resources` folder
+- add code:
+```
+handlers=java.util.logging.ConsoleHandler
+.level=ALL
+java.util.logging.ConsoleHandler.level=ALL
+java.util.logging.ConsoleHandler.formatter=java.util.logging.SimpleFormatter
+confLogger.level=ALL
+  
+```
+- Changing Log Levels in `logging.properties`
+- `java.util.logging.ConsoleHandler.level=ALL`
+  - SEVERE: The message level for serious problems that prevent normal execution. This is the highest level on the logging scale.
+  - WARNING: The message level for potential problems.
+  - INFO: The message level for informational purposes.
+  - CONFIG: The message level for static configuration messages.
+  - FINE: The message level for basic tracing information.
+  - FINER: The message level for fairly-detailed tracing messages.
+  - FINEST: The message level for highly-detailed tracing messages.
+  - ALL: The message level that indicates that all messages should be logged.
+  - OFF: Used to turn off logging.
+## Front-End Integration
+- the front-end and back-end as at least two different applications that communicate over HTTP. This allows maximum flexibility and the team size can be split to accommodate the strengths of different developers. 
+- how to create a single back-end application using Spring and then access the endpoints of the application through a React app and then an Angular app
+
+- libraries: collections of classes
+- Spring: is a external or third party library
+- libraries are also called dependencies 
+  - if you remove them your project will not work
+- Maven: standard tool for downloading and managing libraries 
+  - is a Command Line tool (CLI)
+  - 
+- IDE has a built interface to manage all your dependencies
+### JSON Web Tokens (JWT)
+- a standard practice for most Back-End and Front-End applications to authenticate requests.
+- Since most communication with a back end RESTful API is intended to be stateless 
+- the back end doesn't keep track of the user session, 
+- each request must be authenticated at the time it is received by the back end service. Rather than passing the users login information each time, it is simpler for the server to generate an encrypted string when the user logs in. 
+- From that point on the user can use the encrypted string to gain access to the RESTful application functions.
+- EX: similar to a security badge you might use to open doors in a secured building. The management of the building can issue a badge to you which will let you gain access through any locked doors. Each time you want to enter a particular room you present your badge, and the badge represents your identity.
+- JWT's work the same way. They are issued to you by the back end RESTful API service (Spring) upon login. The front-end application stores that JWT and will pass it along as part of the request each time the user tries to access another area of the back-end RESTful service.
+### Cross Origin Resource Sharing [(CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+- Cross Origin requests are any request that come to the server form an unapproved location.
+- One security measure put in place by back end frameworks such as Spring, is a denial of any Cross Origin requests
+- This is one way of preventing a malicious website from trying to communicate with your Spring application.
+### Full Stack Project
+#### Create a new Spring STS project
+  - Include the `web`, `mysql`, `JPA`, and `security`
+- After the project is created need a  single dependency to add to the pom.xml file
+  - allow the project to work with JWT tokens.
+  - bottom of the `dependencies` section
+  ```
+  <!-- https://mvnrepository.com/artifact/com.auth0/java-jwt -->
+	<dependency>
+	<groupId>com.auth0</groupId>
+	<artifactId>java-jwt</artifactId>
+	<version>3.8.0</version>
+	</dependency>
+  ```
+#### Create an API Controller
+- new package `com.fullstackproject`
+  - class called `ValuesController`
+- After the JWT and CORS security components are finalized, this controller will not be accessible until the user has logged in and can provide a proper JWT token.
+- set up a @RestController
+#### Set Up Your Data
+- configure your Spring application to communicate with your MySQL database and store user information there
+- `com.fullstackproject.auth.`
+- all of your code artifacts for authentication and authorization in this package.
+  - `User` class
+  - `UserRepository` interface
+- configure your `application.properties` file to connect to the MySQL database.
+```
+spring.jpa.hibernate.ddl-auto=update
+spring.datasource.url=jdbc:mysql://localhost:3306/fullstackproject?createDatabaseIfNotExist=true
+spring.datasource.username=root
+spring.datasource.password=Password1!
+```
+- `?createDatabaseIfNotExist=true` section of the spring.datasource.url will create the database if does not already exist.
+#### User Details Service
+- Before adding the JWT integration you first need to create a service class that will provide user details to the JWT components in an expected way.
+- Methods like 
+  - how to save a new user to the database   
+  - finding a user by their username 
+  - listing any authorities they have are all important functions the JWT authentication will need. 
+- By putting these functions in a service class, the logic for performing these actions can be encapsulated in a single place.
+- if changes need to be made about how to access user information (if you change databases for example), these changes can easily be rewritten in a new class to replace this service class without disrupting any other components that make up your security.
+- `com.fullstackproject.auth` package
+  - add `MySQLUserDetailsService` class
+1. service class will require is access to the userRepository since it will need to communicate with the database for user information. 
+2. service class needs is a password encoder to help convert the clear text password to an encrypted one before the password is saved to the database.
+3. why we have added two private variables to the class and used the Autowired annotation to create their instances.
+#### JSON Web Token (JWT) Authentication Filter
+- difficult to manage your application if every controller had to verify the JWT on it's own. 
+- it would be more convenient for every request to be handled by the framework before it is received by the controller.
+- implement JWT Authentication and JWT Authorization filters to funnel your requests through and validate. 
+1. creating a static class to hold some of the important authentication values 
+  - a secret key for encrypting 
+  - decrypting JWT's, 
+  - an expiration time for the JWT's, 
+  - a header string 
+  - prefix for HTTP communication
+  - a url for where the user can register.
+- `com.fullstackproject.auth` package
+  - new class `AuthConstants`
+- providing these values as static constants. These values will be used in multiple places so this AuthConstants class helps provide a single source for all of those values.
+2. create the JWT Authentication Filter that will provide a way to attempt authentication, a path for failed attempts, and a path for successful attempts.
+  - `com.fullstackproject.auth package`
+    - new class `JWTAuthenticationFilter`
+3. JWT Authorization Filter
+  - after the front end application receives the JWT, they must present it each time they want to gain access to a part of your application. The `JWTAuthorizationFilter` will receive the JWT from the users request and verify it's authenticity.
+#### Wiring It All Together
+- All of the security classes have been created, so now it's time for you to implement them as part of the Spring Security configuration.
+- `com.fullstackproject.auth` package
+  - new class `WebSecurityConfig`
+- takes all the components and configures them for use in our application.
+- Several components are being brought together in this class.
+  - `MySQLUserDetailsService` is being @Autowired
+  - `PasswordEncoder` is using `BCrypt` to provide password encryption used in the `JWTAuthorizationFilter`
+  - the `JWTAuthorizationFilter` and `JWTAuthenticationFilter` are being added to the request pipeline in the configure method
+  - added element of CORS
+#### User Controller
+- `com.fullstackproject.auth` package
+  - new class `UserController`
+#### React Front End

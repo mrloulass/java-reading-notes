@@ -5,6 +5,7 @@
 
 ## Frameworks
 - Spring Frameworks
+  - Spring Security Toolkit
 - Spring STS
 - Spring Boot
 
