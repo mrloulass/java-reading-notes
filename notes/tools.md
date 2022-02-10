@@ -2,12 +2,19 @@
 
 ## Language
 - Java
+- CSS
+- HTML
+- JavaScript
+- TypeScript
 
-## Frameworks
+## Frameworks 
 - Spring Frameworks
   - Spring Security Toolkit
 - Spring STS
 - Spring Boot
+- jQuery
+- Angular
+
 
 ## IDE
 - Eclipse
@@ -21,3 +28,4 @@
 - Apache Tomcat
 - Postman
 - Hibernate
+- AJAX
