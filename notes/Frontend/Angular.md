@@ -1098,4 +1098,13 @@ export class DisplayMoviesComponent implements OnInit {
   </ul>
 </div>
 ```
+## Passing Data Between Components
+### Terms
+- `@Input()`	A decorator that allows a component to consume data from another component.
+- `@Output()`	Allows a component to provide data to another component.
+- `EventEmitter`	A generic that specifies the type of data that will be passed when the even is emitted.
+### Passing Data from Parent to Child
+- A `component` can receive data from its parent component, as long as it has specified that it's able to. When a child component requires data, this data is considered an `input`. There is an `@Input()` decorator that can be applied to the property of a component to indicate that it is meant to be used as input from its parent.
+### Passing Data from Child  to Parent 
+- A `component` can receive data from its child component, as long as it has specified that it's able to. When a parent component requires data, this data is considered an `output`. There is an `@Output()` decorator that can be applied to the property of a component to indicate that it is meant to be used as output from its child.
 
